@@ -1,1 +1,5 @@
 *.env
+*.txt
+
+Photos-backup-script/test-copy-directory/
+Photos-backup-script/test-read-directory/

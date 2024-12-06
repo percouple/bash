@@ -1,7 +1,15 @@
 #!/bin/bash
 
+# Handle for work environment testing
+source "./work_env_vars.env"
+if [ -e "./work_env_vars.env" ]; then
+    echo "Hey bro, I fixed your file path for you. Have a good day at work."
+else 
+    $ENV_PATH="./Pictures/Photos Library.photoslibrary"
+fi
+
 # Configuration
-PHOTOS_LIBRARY_PATH="$HOME/Pictures/Photos Library.photoslibrary"
+PHOTOS_LIBRARY_PATH="$HOME$ENV_PATH"
 INTERVAL_SECONDS=3600
 LAST_MODIFIED_FILE="$HOME/.photos_last_modified"
 
