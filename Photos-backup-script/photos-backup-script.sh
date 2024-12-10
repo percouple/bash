@@ -6,7 +6,7 @@ if [ -e "./work_env_vars.env" ]; then
     echo "Hey bro, I fixed your file path for you. Have a good day at work."
 else 
     $ENV_PATH="./Pictures/Photos Library.photoslibrary"
-fi
+fi 
 
 # Configuration
 PHOTOS_LIBRARY_PATH="$HOME$ENV_PATH"
@@ -19,21 +19,22 @@ if [ ! -d "$PHOTOS_LIBRARY_PATH" ]; then
   exit 1
 fi
 
-# Check if the copy directory exists
-read -p "Please enter copy directory path: " -t 3600 COPY_DIRECTORY
-
-# Check if user entered a directory
-if [ -z "$COPY_DIRECTORY" ]; then
-    echo "No input received within the timeout period."
-    exit 1
-fi
-
-# Check if the directory exists
-if [ -d "$COPY_DIRECTORY" ]; then
-    echo "The directory '$COPY_DIRECTORY' exists."
-else
+# Check if the directory exists until valid one is entered
+while true 
+do 
+    read -p "Please enter copy directory path: " -t 3600 COPY_DIRECTORY
+    # Check if user entered a directory, exit if not within timeout
+    if [ -z "$COPY_DIRECTORY" ]; then
+        echo "No input received within the timeout period."
+        exit 1
+    fi
+    if [ -d "$COPY_DIRECTORY" ]; then
+        echo "The directory '$COPY_DIRECTORY' exists."
+        break
+    fi
     echo "The directory '$COPY_DIRECTORY' does not exist."
-fi
+done
+
 
 # Wait for the specified interval before checking again
 # sleep $INTERVAL_SECONDS
