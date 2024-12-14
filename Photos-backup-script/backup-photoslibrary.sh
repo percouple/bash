@@ -5,13 +5,12 @@ source "./work_env_vars.env"
 if [ -e "./work_env_vars.env" ]; then
     echo "Hey bro, I fixed your file path for you. Have a good day at work."
 else 
-    ENV_PATH="/Pictures/Photos Library.photoslibrary"
+    ENV_PATH="/Pictures/Photos_Library.photoslibrary"
 fi 
 
 # Configuration
 PHOTOS_LIBRARY_PATH="$HOME$ENV_PATH"
 INTERVAL_SECONDS=3600
-LAST_MODIFIED_FILE="$HOME/.photos_last_modified"
 
 echo $PHOTOS_LIBRARY_PATH;
 
@@ -40,6 +39,9 @@ Success! The directory '$COPY_DIRECTORY' exists."
     echo "The directory '$COPY_DIRECTORY' does not exist."
 done
 
+echo "Copying: $PHOTOS_LIBRARY_PATH"
+# Copy photos library file
+cp -Rpv $PHOTOS_LIBRARY_PATH $COPY_DIRECTORY
 
 # Wait for the specified interval before checking again
 # sleep $INTERVAL_SECONDS
