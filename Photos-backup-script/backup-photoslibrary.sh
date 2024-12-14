@@ -24,14 +24,17 @@ fi
 # Check if the directory exists until valid one is entered
 while true 
 do 
-    read -p "Please enter copy directory path: " -t 3600 COPY_DIRECTORY
+    read -p "
+Please enter copy directory path: 
+" -t 3600 COPY_DIRECTORY
     # Check if user entered a directory, exit if not within timeout
     if [ -z "$COPY_DIRECTORY" ]; then
         echo "No input received within the timeout period."
         exit 1
     fi
     if [ -d "$COPY_DIRECTORY" ]; then
-        echo "The directory '$COPY_DIRECTORY' exists."
+        echo "
+Success! The directory '$COPY_DIRECTORY' exists."
         break
     fi
     echo "The directory '$COPY_DIRECTORY' does not exist."

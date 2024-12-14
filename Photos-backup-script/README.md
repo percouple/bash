@@ -18,5 +18,10 @@ This script automatically backs up your macOS Photos Library file to a remote dr
 ### 1. Clone or Download the Script
 
 ```bash
-git clone https://github.com/yourusername/macphotos-backup.git
-cd macphotos-backup
+git clone https://github.com/percouple/bash-practice.git
+cd Photos-backup-script
+```
+
+### 2. Run './backup-photoslibrary.sh' in the terminal 
+
+### 3. Follow the prompts for the required directories
