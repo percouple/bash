@@ -40,10 +40,32 @@ while true; do
     fi
 done
 
-# Ask user if they want a backup for safety
+# Create backup for safety
+rsync -ar $DIR $DIR/../randomizer-backup
 
 # Execute find and sort -random
 FILES=($(find $DIR -maxdepth 1 -type f | sort -R))
 
-# Respond with files that have been randomized
-echo "Files Randomized: " ${FILES[*]}
+# Prompt the user for keeping backup
+while true; do
+    read -p "Would you like to keep the old file order? (y/n): " KEEP
+
+    # Convert to lowercase to handle different cases like YES, No, etc.
+    KEEP=$(echo "$KEEP" | tr '[:upper:]' '[:lower:]')
+
+    # Check if the response is 'yes' or 'no'
+    if [ "$KEEP" == "y" ]; then
+        echo 'Done. You can find the old order in "./randomizer-backup".'
+        break  # Exit the loop and continue with the script
+    elif [ "$KEEP" == "n" ]; then
+        rm -r $DIR/../randomizer-backup
+        echo "Old file deleted. "
+        break  # Exit the loop and stop the script
+    else
+        # If the input is not valid, ask again
+        echo "Invalid input. Please enter 'yes' or 'no'."
+    fi
+done
+
+echo "Files successfully randomized." 
+echo ${FILES[*]}
